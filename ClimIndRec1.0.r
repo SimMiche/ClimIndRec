@@ -389,9 +389,9 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
                     
                     for (i in 2:length(coefs)) pred_all=pred_all+coefs[i]*pcs_all[,i-1]
 
-                    pall=rep(NA,length(ty[samp]))
-                    for (ttt in 1:length(ty[samp])){
-                        pall[ttt]=pred_all[t==ty[samp][ttt]]
+                    pall=rep(NA,length(ty[-samp]))
+                    for (ttt in 1:length(ty[-samp])){
+                        pall[ttt]=pred_all[t==ty[-samp][ttt]]
                     }
 
                     incerts[r]=sqrt(sum((pall-Ytrain)^2)/(length(Ytrain)-2))
@@ -551,9 +551,9 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
                     
                     pred_all=predict(plsall,datas)[,,q_opt]
                     
-                    pall=rep(NA,length(ty[samp]))
-                    for (ttt in 1:length(ty[samp])){
-                        pall[ttt]=pred_all[t==ty[samp][ttt]]
+                    pall=rep(NA,length(ty[-samp]))
+                    for (ttt in 1:length(ty[-samp])){
+                        pall[ttt]=pred_all[t==ty[-samp][ttt]]
                     }
 
                     incerts[r]=sqrt(sum((pall-Ytrain)^2)/(length(Ytrain)-2))
@@ -755,9 +755,9 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
 
                     pred_all=predict(mdf,data.matrix(datas))
                     pred_all=as.numeric(pred_all)
-                    pall=rep(NA,length(ty[samp]))
-                    for (ttt in 1:length(ty[samp])){
-                        pall[ttt]=pred_all[t==ty[samp][ttt]]
+                    pall=rep(NA,length(ty[-samp]))
+                    for (ttt in 1:length(ty[-samp])){
+                        pall[ttt]=pred_all[t==ty[-samp][ttt]]
                     }
 
                     incerts[r]=sqrt(sum((pall-Ytrain)^2)/(length(Ytrain)-2))
@@ -977,9 +977,9 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
                     
                     pred_all=predict(rfopt,datas)
                     
-                    pall=rep(NA,length(ty[samp]))
-                    for (ttt in 1:length(ty[samp])){
-                        pall[ttt]=pred_all[t==ty[samp][ttt]]
+                    pall=rep(NA,length(ty[-samp]))
+                    for (ttt in 1:length(ty[-samp])){
+                        pall[ttt]=pred_all[t==ty[-samp][ttt]]
                     }
 
                     incerts[r]=sqrt(sum((pall-Ytrain)^2)/(length(Ytrain)-2))
