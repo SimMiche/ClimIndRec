@@ -239,7 +239,7 @@ RMSE=function(x,y){
 
 ### Main function ###
 apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests=T,conf=0.9,seed=3,trace=T,blockstyle_cv=T,blockstyle_holdout=T,K_cv=10){
-
+    trace=T
     y1=as.numeric(y1)
     y2=as.numeric(y2)
 
