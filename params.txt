@@ -20,7 +20,7 @@ y_start=
 ### Year where the reconstruction stops (Must at least overlap the period on which the climate index is observed) ###
 y_stop=
 
-### Number of training/testing splits, if blockstyle_holdout=T, R is recalculated according to freq_train ###
+### Number of training/testing splits, if blockstyle_holdout is set to T, R is recalculated according to freq_train ###
 R=
 
 ### Regression method to be used, must be "rf" for Random Forest, "enet" for Elastic Net, "pls" for Partial Least Squares or "pcr" for Principal Component Regression, "alasso" for adaptive lasso and "lassoridge" to perform a feature selection with lasso then applying a ridge regression ###
