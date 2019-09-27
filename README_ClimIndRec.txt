@@ -1,4 +1,4 @@
-If you encouter any bug, please report it to me by email and I will tell you if this comes from your settings or if it's a bug of the code. For the latter case, I will fix it as fast as possible.
+If you encouter any bug, please report it to me by email attaching both your "params.txt" file and the R error message you have and I will tell you if this comes from your settings or if it's a bug in the code. For the latter case, I will fix it as fast as possible.
 My emails: 
   - simon.michel.epoc@gmail.com
   - simon.michel@hotmail.fr
