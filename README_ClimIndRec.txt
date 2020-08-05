@@ -1,20 +1,22 @@
+*** Please credit Michel et al. 2020 (GMD, https://gmd.copernicus.org/articles/13/841/2020/) for any usage of this code ***
+
 If you encouter any bug, please report it to me by email attaching both your "params.txt" file and the R error message you have and I will tell you if this comes from your settings or if it's a bug in the code. For the latter case, I will fix it as fast as possible.
 My emails: 
   - simon.michel.epoc@gmail.com
   - simon.michel@hotmail.fr
   - simon.michel@u-bordeaux.fr
 
-CLIMOREC is composed of three main files:
+ClimIndRec is composed of three main files:
   - climorec.r
   - params.txt
   - run.sh
   
 1. climorec.r
-  This file contains the main code of the device CLIMOREC and is commented such that someone with a few R knowledge can modify it as he wants.
+  This file contains the main code of the device ClimIndRec and is commented such that someone with a few R knowledge can modify it as he wants.
   
 2. params.txt
-  This file has to be filled by the user of CLIMOREC for the parameters needed to compute climate index reconstruction, please let "=" as separator between the name of the parameter and the user input.
-    - workdir: Enter the directory where CLIMOREC files are and the outputs will be placed, please provide an absolute path
+  This file has to be filled by the user of ClimIndRec for the parameters needed to compute climate index reconstruction, please let "=" as separator between the name of the parameter and the user input.
+    - workdir: Enter the directory where ClimIndRec files are and the outputs will be placed, please provide an absolute path
     - name_reconstruction: Name of your experiment, a sub-directory with this name will be created in the workdir for outputs
     - path_database: Path to the proxy records database, first column be the time steps and other columns the proxy records. Only txt and csv files are allowed. Please provide an absolute path
     - path_mode: Path to the file containing the climate mode, the first column must contain the time steps while the second must be the observations of the climate mode. Only txt and csv files are allowed. Please provide an absolute path
@@ -57,6 +59,7 @@ Output
     - <name_reconstruction>_uncertainties_final_model.csv: A single value giving uncertainties for the final reconstruction.
     - <name_reconstruction>_ShapiroWilk_pvalues_residuals_final_model.csv: A single value giving the p-value of a Shapiro-Wilk normality test on the residuals of the final reconstruction.
     - <name_reconstruction>_nb_records_final_model.csv: A single value giving the number of proxy records used for the final reconstruction.
+    - <name_reconstruction>_RE_scores.csv: A Rx1 array that contains Reduction of Errors validation scores for the individual reconstruction (see Macias-Fauri et al. 2011 for reduction of error definition).
   
 
 
