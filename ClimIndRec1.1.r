@@ -186,6 +186,14 @@ nse=function(obs,pred){
     return(nse)
 }
 
+### Calculate the Nash-Sutcliffe Coefficient of Efficiency ###
+re=function(obs,pred,obs_train){
+    s1=sum((obs-pred)^2)
+    s2=sum((obs-mean(obs_train))^2)
+    nse=1-s1/s2
+    return(nse)
+}
+
 ### 10-folds cross validation for the PCR method ###
 kf_pcr=function(method,x,y,blockstyle_cv=T,kcv=10){
     if (method=='pcr'){
@@ -284,6 +292,7 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
     namdata=c()
     namdatas=c()
     nses=rep(NA,ifelse(blockstyle_holdout,round(nrow(X)*freq_calib)+1,R))
+    rescores=rep(NA,ifelse(blockstyle_holdout,round(nrow(X)*freq_calib)+1,R))
     rmses=rep(NA,ifelse(blockstyle_holdout,round(nrow(X)*freq_calib)+1,R))
     npx=rep(NA,ifelse(blockstyle_holdout,round(nrow(X)*freq_calib)+1,R))
     shapiros=rep(NA,ifelse(blockstyle_holdout,round(nrow(X)*freq_calib)+1,R))
@@ -380,6 +389,7 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
                     
                     val_cors[r]=cor(pred,Ytest)
                     nses[r]=nse(Ytest,pred)
+	     	    rescores[r]=re(Ytest,pred,Ytrain)
                     
                     pcs_all=predict(pca,datas)
                     rmses[r]=RMSE(pred,Ytest)
@@ -548,6 +558,8 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
                     val_cors[r]=cor(pred,Ytest)
                     incerts[r]=sqrt(sum((pred-Ytest)^2)/(length(Ytest)-2)) 
                     nses[r]=nse(Ytest,pred)
+		    rescores[r]=re(Ytest,pred,Ytrain)
+		    
                     
                     pred_all=predict(plsall,datas)[,,q_opt]
                     
@@ -743,7 +755,8 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
                     val_cors[r]=cor(as.numeric(pred),Ytest)
                     
                     nses[r]=nse(Ytest,pred)   
-
+		    rescores[r]=re(Ytest,pred,Ytrain)
+			
                     pred_all=predict(mdf,data.matrix(datas))
                     pred_all=as.numeric(pred_all)
                     pall=rep(NA,length(ty[samp]))
@@ -963,7 +976,7 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
                     val_cors[r]=cor(pred,Ytest)
 
                     nses[r]=nse(Ytest,pred)
-                    
+                    rescores[r]=re(Ytest,pred,Ytrain)
                     pred_all=predict(rfopt,datas)
                     
                     pall=rep(NA,length(ty[samp]))
@@ -1152,7 +1165,7 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
                     val_cors[r]=cor(pred,Ytest)
 
                     nses[r]=nse(Ytest,pred)
-
+		    rescores[r]=re(Ytest,pred,Ytrain)
                     pred_all=as.vector(predict(alasso,as.matrix(datas),s=alasso.cv$lamda.min))
 
                     pall=rep(NA,length(ty[samp]))
@@ -1317,7 +1330,7 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
                         rmses[r]=RMSE(pred,Ytest)
                         val_cors[r]=cor(pred,Ytest)    
                         nses[r]=nse(Ytest,pred)
-
+			rescores[r]=re(Ytest,pred,Ytrain)
                         pred_all=as.vector(predict(ridge,as.matrix(datas),s=ridge.cv$lamda.min))
 
                         pall=rep(NA,length(ty[samp]))
@@ -1416,5 +1429,5 @@ apply_rec=function(workdir='.',path_db,path_mode,y1,y2,method,R,freq_calib,tests
     
     namdata=unique(namdatas)
     
-    return(list(pred_fin,pred_base,val_cors,rmses,npx,namdatas,preds,nses,incerts,ttrains,ttests,shapiros,namdatas_fin,r2_fin,cor_fin,rmse_fin,incerts_fin,shap_fin,npx_fin,nms_fin))
+    return(list(pred_fin,pred_base,val_cors,rmses,npx,namdatas,preds,nses,incerts,ttrains,ttests,shapiros,namdatas_fin,r2_fin,cor_fin,rmse_fin,incerts_fin,shap_fin,npx_fin,nms_fin,rescores))
 }
