@@ -68,3 +68,4 @@ write.csv(results[[19]],paste(params[[2]],'_nb_records_final_model.csv',sep=''),
 
 write.csv(results[[20]],paste(params[[2]],'_name_proxies_final_model.csv',sep=''),quote=F,row.names=F)
 
+write.csv(results[[21]],paste(params[[2]],'_RE_scores.csv',sep=''),quote=F,row.names=F)
