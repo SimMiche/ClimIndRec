@@ -1,0 +1,6 @@
+Update from 5th August 2020 , only available for version 1.1 or higher:
+  -> The Reduction of Error metric computed over testing samples has been added (see Macias-Fauria et al. 2011 for definition). 
+  -> Since this is not a large update no version 1.2 has been released.
+  
+*** You can send an email to one of the following adresses for any suggestion for updates: simon.michel.epoc@gmail.com, simon.michel@hotmail.fr ***
+*** Please credit Michel et al. 2020 (GMD, https://gmd.copernicus.org/articles/13/841/2020/) for any usage of this code ***
